@@ -13,18 +13,23 @@ const PORT = process.env.PORT || 5000;
 app.set("trust proxy", 1);
 
 // ✅ CORS SABSE PEHLE
-const corsOptions = {
+app.use(cors({
   origin: "https://readly-in-fronted.onrender.com",
   credentials: true,
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization"]
-};
+}));
 
-app.use(cors(corsOptions));
-app.options("*", cors(corsOptions)); // same config use karo
+app.options("*", cors({
+  origin: "https://readly-in-fronted.onrender.com",
+  credentials: true,
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"]
+}));
 
 // ✅ THEN PARSE
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 app.get("/", (req, res) => {
   res.json({ msg: "Backend Running ✅" });

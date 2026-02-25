@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router";
 
-const API_BASE = "http://localhost:3000/api/vi/user";
+const API_BASE = "https://readly-in.onrender.com/api/v1/user";
 
 // ─── SUBTLE GEOMETRIC BACKGROUND ─────────────────────────────────────────────
 function GeometricBg() {

@@ -5,36 +5,33 @@ import ConnectionDB from "./Config/Database.js";
 import Routes from "./routes/user.route.js";
 
 dotenv.config();
-
 ConnectionDB();
 
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// ✅ CORS FIX (IMPORTANT)
-app.use(
-  cors({
-    origin: [
-      "http://localhost:5173",
-      "https://readly-frontend.onrender.com"
-    ],
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    credentials: true,
-  })
-);
+app.set("trust proxy", 1);
 
+// ✅ CORS SABSE PEHLE
+const corsOptions = {
+  origin: "https://readly-in-fronted.onrender.com",
+  credentials: true,
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"]
+};
+
+app.use(cors(corsOptions));
+app.options("*", cors(corsOptions)); // same config use karo
+
+// ✅ THEN PARSE
 app.use(express.json());
 
-// ── Routes ──
 app.get("/", (req, res) => {
-  return res
-    .status(200)
-    .json({ success: true, message: "PROJECT NOW WORKING ✅" });
+  res.json({ msg: "Backend Running ✅" });
 });
 
 app.use("/api/v1/user", Routes);
 
-// ── Start ──
 app.listen(PORT, () => {
-  console.log(`Server is Running ✅ ON PORT ${PORT}`);
+  console.log(`Server Running on ${PORT}`);
 });

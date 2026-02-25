@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef, useCallback } from "react";
 import * as THREE from "three";
 import { useNavigate } from "react-router";
 
-const BASE = "https://readly-in.onrender.com/api/v1/user";
+const BASE = "https://readly-in-1-backend.onrender.com/api/v1/user";
 const getToken = () => localStorage.getItem("token") || "";
 const getUser  = () => { try { return JSON.parse(localStorage.getItem("user") || "{}"); } catch { return {}; } };
 const isLoggedIn = () => !!localStorage.getItem("token");

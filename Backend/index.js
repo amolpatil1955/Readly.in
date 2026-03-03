@@ -17,7 +17,7 @@ app.use(
   cors({
     origin: [
       "http://localhost:5173",
-      "https://readly-frontend.onrender.com"
+      "https://readly-in-fronted.onrender.com"
     ],
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
